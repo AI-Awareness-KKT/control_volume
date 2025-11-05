@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI - Awareness Project</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 0;
+      border-bottom: 2px solid #eee;
+    }
+
+    header img {
+      height: 120px;
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    main {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 40px 60px;
+      gap: 40px;
+    }
+
+    .instructions {
+      flex: 1;
+      background: #f9fafc;
+      border-radius: 10px;
+      padding: 20px 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      max-width: 400px;
+    }
+
+    .instructions h2 {
+      color: #0b74de;
+      margin-top: 10px;
+    }
+
+    .instructions ol,
+    .instructions ul {
+      text-align: left;
+      line-height: 1.7;
+      color: #333;
+      margin-left: 15px;
+    }
+
+    .video-container {
+      flex: 2;
+      text-align: center;
+      position: relative;
+    }
+
+    .video-frame {
+      width: 640px;
+      height: 480px;
+      border-radius: 10px;
+      background: #000;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #volume-label {
+      font-size: 1.2rem;
+      color: #0b74de;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    #volume-bar {
+      margin: 10px auto;
+      width: 300px;
+      height: 20px;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #fill {
+      height: 100%;
+      width: 0%;
+      background: #0b74de;
+      transition: width 0.2s;
+    }
+
+    #control-buttons {
+      margin-top: 15px;
+    }
+
+    button {
+      background-color: #0b74de;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #095bb3;
+    }
+
+    @media (max-width: 992px) {
+      main {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+      .video-frame {
+        width: 90%;
+        height: auto;
+      }
+      .instructions {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="static/logo.jpg" alt="AI - Awareness Project">
+  </header>
+
+  <main>
+    <!-- Left Side -->
+    <div class="instructions">
+      <h2>🧠 Instructions</h2>
+      <ol>
+        <li>Click <b>Start Camera</b> to begin hand tracking.</li>
+        <li>Show your hand clearly in front of the camera.</li>
+        <li>Move your thumb and index finger apart to adjust volume.</li>
+      </ol>
+
+      <h2>💡 Tips</h2>
+      <ul>
+        <li>Use a well-lit background for better tracking.</li>
+        <li>Keep your hand centered on camera.</li>
+        <li>This version simulates real-time volume visually and with sound.</li>
+      </ul>
+    </div>
+
+    <!-- Right Side -->
+    <div class="video-container">
+      <video id="video" autoplay playsinline style="display:none;"></video>
+      <canvas class="video-frame" id="output"></canvas>
+
+      <div id="volume-label">Volume: 0%</div>
+      <div id="volume-bar"><div id="fill"></div></div>
+
+      <div id="control-buttons">
+        <button id="startBtn">Start Camera</button>
+        <button id="stopBtn" disabled>Stop Camera</button>
+      </div>
+
+      <audio id="sampleAudio" src="static/sample.mp3" loop></audio>
+      <p>Live Hand Tracking + Volume Simulation (MediaPipe JS)</p>
+    </div>
+  </main>
+
+  <!-- MediaPipe -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>
