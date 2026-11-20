@@ -12,14 +12,20 @@ Control the volume of real music with your hand. The page runs entirely in the b
 
 1. Open the page (GitHub Pages uses HTTPS, which the camera needs) and click **Start Camera**. The music starts with that click, because browsers only play sound after a click.
 2. Hold up one hand, palm towards the camera.
-3. Pinch to turn the music down, spread your fingers to turn it up. **▶ Play / ⏸ Pause music** toggles the music.
+3. **Start:** show three fingers (thumb, index and middle finger up; ring and little finger folded) and hold for about a second. A ring around your palm fills while you hold it.
+4. Pinch your thumb and index finger to turn the music down, spread them to turn it up. Keep the other three fingers folded.
+5. **Stop:** show the three fingers again. The volume locks where you left it. **▶ Play / ⏸ Pause music** toggles the music.
+
+The sign must be held briefly before it counts, and must be lowered before it can count again, so holding it never flips on and off. The volume never changes while the sign is showing.
 
 To try it on your computer: run `python3 -m http.server 8000` in this folder and open http://localhost:8000. Double-clicking `index.html` will not work, because the camera needs localhost or HTTPS.
 
 ## Files
 
 - `index.html`: the page.
-- `js/main.js`: hand tracking, volume calculation and music control. `CLOSED`, `OPEN` and `SMOOTHING` at the top tune how it feels.
+- `js/gesture.js`: the hand-sign rules (which fingers are up, the three-finger start/stop sign, the pinch ratio). No camera code, so it can be tested on its own.
+- `js/main.js`: camera, drawing, volume calculation and music control. `CLOSED`, `OPEN` and `SMOOTHING` at the top tune how it feels.
+- `tests/`: tests for the hand-sign rules. Run `node --test tests/gesture.test.js` (Node.js 18+).
 - `static/open-hands.mp3`: the music (about 69 s, loops seamlessly).
 - `static/logo.jpg`: project banner.
 - `music-source/compose.py`: the program that composed and synthesised the music (Python with numpy and scipy).

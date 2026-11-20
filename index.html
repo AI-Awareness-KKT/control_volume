@@ -160,14 +160,17 @@
       <ol>
         <li>Click <b>Start Camera</b> and allow camera access. The music starts too.</li>
         <li>Hold up one hand, palm towards the camera.</li>
-        <li>Pinch your thumb and index finger together to turn the music <b>down</b>; spread them apart to turn it <b>up</b>.</li>
+        <li><b>Start:</b> show three fingers (thumb, index and middle finger up, the other two folded) and hold for a second.</li>
+        <li>Now pinch your thumb and index finger together to turn the music <b>down</b>; spread them apart to turn it <b>up</b>. Keep the other three fingers folded.</li>
+        <li><b>Stop:</b> show the three fingers again. The volume stays where you left it.</li>
       </ol>
 
       <h2>💡 Tips</h2>
       <ul>
         <li>Use a well-lit room for better tracking.</li>
         <li>It works near or far: the finger gap is compared with the size of your hand.</li>
-        <li>If no hand is seen, the volume stays where it was.</li>
+        <li>The ring around your palm fills while you hold the sign. Green = starting, orange = stopping.</li>
+        <li>The volume never changes while the sign is showing, or when no hand is seen.</li>
         <li>The camera picture stays in your browser. Nothing is recorded.</li>
       </ul>
     </div>
@@ -194,12 +197,13 @@
     </div>
   </main>
 
-  <!-- MediaPipe -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <!-- MediaPipe, locked to fixed versions so future library updates cannot break the page -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js"></script>
 
   <!-- Custom JS -->
+  <script src="js/gesture.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
