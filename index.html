@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI - Awareness Project</title>
+  <title>Hand Volume Control · AI Awareness Project</title>
+  <link rel="icon" href="data:,">
   <style>
     body {
       margin: 0;
@@ -63,7 +64,9 @@
 
     .video-frame {
       width: 640px;
-      height: 480px;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
       border-radius: 10px;
       background: #000;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
@@ -111,6 +114,23 @@
       background-color: #095bb3;
     }
 
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    #status {
+      color: #506479;
+      min-height: 1.5em;
+      margin: 8px auto 0;
+      max-width: 640px;
+    }
+
+    .credit {
+      color: #6b7a8c;
+      font-size: 0.9rem;
+    }
+
     @media (max-width: 992px) {
       main {
         flex-direction: column;
@@ -138,23 +158,24 @@
     <div class="instructions">
       <h2>🧠 Instructions</h2>
       <ol>
-        <li>Click <b>Start Camera</b> to begin hand tracking.</li>
-        <li>Show your hand clearly in front of the camera.</li>
-        <li>Move your thumb and index finger apart to adjust volume.</li>
+        <li>Click <b>Start Camera</b> and allow camera access. The music starts too.</li>
+        <li>Hold up one hand, palm towards the camera.</li>
+        <li>Pinch your thumb and index finger together to turn the music <b>down</b>; spread them apart to turn it <b>up</b>.</li>
       </ol>
 
       <h2>💡 Tips</h2>
       <ul>
-        <li>Use a well-lit background for better tracking.</li>
-        <li>Keep your hand centered on camera.</li>
-        <li>This version simulates real-time volume visually and with sound.</li>
+        <li>Use a well-lit room for better tracking.</li>
+        <li>It works near or far: the finger gap is compared with the size of your hand.</li>
+        <li>If no hand is seen, the volume stays where it was.</li>
+        <li>The camera picture stays in your browser. Nothing is recorded.</li>
       </ul>
     </div>
 
     <!-- Right Side -->
     <div class="video-container">
       <video id="video" autoplay playsinline style="display:none;"></video>
-      <canvas class="video-frame" id="output"></canvas>
+      <canvas class="video-frame" id="output" width="1280" height="720" aria-label="Mirrored camera picture with the 21 hand points"></canvas>
 
       <div id="volume-label">Volume: 0%</div>
       <div id="volume-bar"><div id="fill"></div></div>
@@ -162,10 +183,14 @@
       <div id="control-buttons">
         <button id="startBtn">Start Camera</button>
         <button id="stopBtn" disabled>Stop Camera</button>
+        <button id="musicBtn">▶ Play music</button>
       </div>
 
-      <audio id="sampleAudio" src="static/sample.mp3" loop></audio>
-      <p>Live Hand Tracking + Volume Simulation (MediaPipe JS)</p>
+      <p id="status" role="status">Click Start Camera to begin.</p>
+
+      <audio id="music" src="static/open-hands.mp3" loop preload="auto"></audio>
+      <p>Live hand tracking with MediaPipe Hands, controlling real music volume.</p>
+      <p class="credit">Music: “Open Hands”, original music composed for the AI Awareness Project.</p>
     </div>
   </main>
 
